@@ -15,11 +15,13 @@ pipeline {
         stage('Run Tests') {
             steps {
                 // Add your test execution command here
+                // For example: bat 'python manage.py test'
             }
         }
         stage('Deploy') {
             steps {
                 // Add your deployment steps here
+                // For example: echo 'Deploying the application...'
             }
         }
     }

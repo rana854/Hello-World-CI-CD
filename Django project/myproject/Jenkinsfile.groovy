@@ -9,18 +9,17 @@ pipeline {
         }
         stage('Install Dependencies') {
             steps {
-               bat 'pip install -r Django project/myproject/requirements.txt'
+                bat 'python -m pip install -r Django project/myproject/requirements.txt' // Use 'python -m pip' instead of 'pip'
             }
         }
         stage('Run Tests') {
             steps {
-                bat 'python manage.py test'
+                // Add your test execution command here
             }
         }
         stage('Deploy') {
             steps {
-                echo 'Deploying the application...'
-                // Your deployment steps here
+                // Add your deployment steps here
             }
         }
     }

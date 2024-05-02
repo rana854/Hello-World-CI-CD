@@ -9,22 +9,17 @@ pipeline {
         }
         stage('Install Dependencies') {
             steps {
-              pip install -r "Django project/myproject/requirements.txt"
+                bat 'pip install -r "Django project/myproject/requirements.txt"'
             }
         }
         stage('Run Tests') {
             steps {
-              python manage.py test
-            }
-        }
-        stage('Run Tests') {
-            steps {
-                bat 'python cicd-project-1/Django project/myproject/manage.py test'
+                bat 'python manage.py test'
             }
         }
         stage('Deploy') {
             steps {
-               echo 'Deploying the application'
+                echo 'Deploying the application'
             }
         }
     }

@@ -4,24 +4,22 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
-                git branch: 'main', url: 'https://github.com/rana854/cicd-project-1.git'
+                git 'https://github.com/rana854/cicd-project-1.git'
             }
         }
         stage('Install Dependencies') {
             steps {
-                bat 'python -m pip install -r /myproject/requirements.txt' // Use 'python -m pip' instead of 'pip'
+               bat 'python -m pip install -r path/to/requirements.txt' // Use 'bat' instead of 'sh' for Windows
             }
         }
         stage('Run Tests') {
             steps {
-                // Add your test execution command here
-                // For example: bat 'python manage.py test'
+                bat 'python manage.py test' // Use 'bat' instead of 'sh' for Windows
             }
         }
         stage('Deploy') {
             steps {
-                // Add your deployment steps here
-                // For example: echo 'Deploying the application'
+               echo 'Deploying the application'
             }
         }
     }

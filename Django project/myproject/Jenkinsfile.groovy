@@ -9,7 +9,7 @@ pipeline {
         }
         stage('Install Dependencies') {
             steps {
-                bat 'pip install -r "Django project/myproject/requirements.txt"'
+                bat 'conda install --file "Django project/myproject/requirements.txt"'
             }
         }
         stage('Run Tests') {

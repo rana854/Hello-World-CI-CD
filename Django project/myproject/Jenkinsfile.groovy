@@ -14,7 +14,7 @@ pipeline {
         }
         stage('Run Tests') {
             steps {
-                bat 'python manage.py test'
+                bat 'python "Django project/myproject/manage.py" test'
             }
         }
         stage('Deploy') {

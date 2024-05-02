@@ -9,7 +9,7 @@ pipeline {
         }
         stage('Install Dependencies') {
             steps {
-               bat 'python -m pip install -r path/to/requirements.txt' // Use 'bat' instead of 'sh' for Windows
+               bat 'python -m pip install -r /myproject/requirements.txt' // Use 'bat' instead of 'sh' for Windows
             }
         }
         stage('Run Tests') {

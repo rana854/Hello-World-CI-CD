@@ -9,7 +9,7 @@ pipeline {
         }
         stage('Install Dependencies') {
             steps {
-                bat 'Python install -r Django project/myproject/requirements.txt'
+                bat 'Python install -r /Django project/myproject/requirements.txt'
 
 
             }

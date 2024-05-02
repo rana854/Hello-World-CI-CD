@@ -10,7 +10,7 @@ pipeline {
        
         stage('Run Tests') {
             steps {
-                bat 'python manage.py test' // Use 'bat' instead of 'sh' for Windows
+                bat 'python cicd-project-1/Django project/myproject/manage.py test' // Use 'bat' instead of 'sh' for Windows
             }
         }
         stage('Deploy') {

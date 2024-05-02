@@ -9,7 +9,7 @@ pipeline {
         }
         stage('Install Dependencies') {
             steps {
-                bat 'python -m pip install -r Django project/myproject/requirements.txt' // Use 'python -m pip' instead of 'pip'
+                bat 'python -m pip install -r /myproject/requirements.txt' // Use 'python -m pip' instead of 'pip'
             }
         }
         stage('Run Tests') {

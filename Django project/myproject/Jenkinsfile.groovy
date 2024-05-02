@@ -7,12 +7,9 @@ pipeline {
                 git branch: 'main', url: 'https://github.com/rana854/cicd-project-1.git'
             }
         }
-      
         stage('Install Dependencies') {
             steps {
               pip install -r "Django project/myproject/requirements.txt"
-
-                
             }
         }
         stage('Run Tests') {

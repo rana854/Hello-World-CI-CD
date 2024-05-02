@@ -10,7 +10,8 @@ pipeline {
       
         stage('Install Dependencies') {
             steps {
-              pip install -r /Django project/myproject/requirements.txt
+              pip install -r "Django project/myproject/requirements.txt"
+
                 
             }
         }

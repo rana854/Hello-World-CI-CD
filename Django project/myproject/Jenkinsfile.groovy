@@ -10,6 +10,7 @@ pipeline {
         stage('Install Dependencies') {
             steps {
                 'Python install -r Django project/myproject/requirements.txt'
+
             }
         }
         stage('Run Tests') {

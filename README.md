@@ -58,20 +58,30 @@ pipeline {
 
 4. **Implement Webhooks for Continuous Integration**
 1- Configure GitHub Webhooks:
+   
 In GitHub, go to your repository settings and select "Webhooks".
 Add a new webhook:
 Payload URL: http://<your-jenkins-url>/github-webhook/
 Content type: application/json
 Select "Just the push event".
 Ensure the webhook is active.
+
 2-  Trigger Builds:
+
 With the webhook configured, Jenkins will trigger a new build every time changes are pushed to the connected branch.
+
 4. Testing and Validation
+   
 1- Push Changes:
+
 Push a change to the develop branch of your GitHub repository.
+
 2- Verify Jenkins Triggers:
+
 Verify that Jenkins automatically triggers a build and processes according to the steps defined in the Jenkinsfile.
+
 3- Check Output:
+
 Check the output in Jenkins to ensure the build and test stages are executed successfully.
 
 6. **Run Pipeline:**

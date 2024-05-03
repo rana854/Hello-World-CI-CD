@@ -78,10 +78,6 @@ The Jenkins pipeline for our Python project is designed to automate essential de
    3. Check Output:
       - Check the output in Jenkins to ensure the build and test stages are executed successfully.
 
-6. **Run Pipeline:**
-   - Save your pipeline configuration and trigger a build manually to test the pipeline.
-   - Jenkins will automatically fetch the code from your GitHub repository, execute the pipeline stages defined in the Jenkinsfile, and display the build status and output.
-
 
 
 ![ci_cd](https://github.com/rana854/cicd-project-1/assets/132678372/4ab7b14d-875b-4ad7-a93b-e1aaacfbbb03)

@@ -30,8 +30,7 @@ Sure, here's a step-by-step guide on how to use the Jenkins pipeline for a Pytho
 
 3. **Write Jenkinsfile:**
    - Create a `Jenkinsfile` in the root directory of your Python project.
-   - Define the stages of your pipeline in the Jenkinsfile, including checkout, build, test, etc.
-   - Use the appropriate syntax (e.g., Groovy DSL for declarative pipeline or Scripted pipeline).
+   - Define the stages of your pipeline in the Jenkinsfile.
    - ## Jenkinsfile
 ```groovy
 pipeline {
@@ -63,21 +62,30 @@ pipeline {
 }
 ```
 
-4. **Configure Jenkins Pipeline:**
-   - In the Jenkins pipeline configuration, specify the path to your Jenkinsfile (e.g., `Jenkinsfile`).
-   - Optionally, configure additional settings such as triggers, post-build actions, etc.
+4. **Implement Webhooks for Continuous Integration**
+1- Configure GitHub Webhooks:
+In GitHub, go to your repository settings and select "Webhooks".
+Add a new webhook:
+Payload URL: http://<your-jenkins-url>/github-webhook/
+Content type: application/json
+Select "Just the push event".
+Ensure the webhook is active.
+2-  Trigger Builds:
+With the webhook configured, Jenkins will trigger a new build every time changes are pushed to the connected branch.
+4. Testing and Validation
+4.1 Push Changes:
 
+Push a change to the develop branch of your GitHub repository.
+4.2 Verify Jenkins Triggers:
+
+Verify that Jenkins automatically triggers a build and processes according to the steps defined in the Jenkinsfile.
+4.3 Check Output:
+
+Check the output in Jenkins to ensure the build and test stages are executed successfully.
 5. **Run Pipeline:**
    - Save your pipeline configuration and trigger a build manually to test the pipeline.
    - Jenkins will automatically fetch the code from your GitHub repository, execute the pipeline stages defined in the Jenkinsfile, and display the build status and output.
 
-6. **Monitor Pipeline Execution:**
-   - Monitor the progress of your pipeline on the Jenkins dashboard.
-   - View the console output to troubleshoot any issues encountered during the build and test stages.
-
-7. **Customize Pipeline:**
-   - Customize your Jenkinsfile and pipeline configuration according to your project requirements.
-   - Add additional stages, steps, or integrations as needed to enhance automation and functionality.
 
 
 ![ci_cd](https://github.com/rana854/cicd-project-1/assets/132678372/4ab7b14d-875b-4ad7-a93b-e1aaacfbbb03)

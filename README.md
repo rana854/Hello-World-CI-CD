@@ -8,7 +8,6 @@ The Jenkins pipeline for our Python project is designed to automate essential de
 - git
 - GitHub account
 - Git installed on the Jenkins server
-Sure, here's a step-by-step guide on how to use the Jenkins pipeline for a Python project:
 
 ### Steps to Use Jenkins Pipeline for Python Project:
 

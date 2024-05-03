@@ -30,7 +30,7 @@ This repository contains the code for a Hospital Management System developed usi
    - Set up credentials in Jenkins for GitHub (username and token).
 3. **Create Pipeline Job:**
    - Create a new pipeline job and configure it to fetch code from your GitHub repository.
-   - Specify the branch to build (e.g., `*/develop`).
+   - Specify the branch to build .
 
 ### Implement Webhooks for Continuous Integration:
 1. **Set Up Webhooks in GitHub:**
@@ -57,7 +57,8 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
-                git branch: 'main', url: 'https://github.com/rana854/cicd-project-1.git'
+                git branch: 'main', url: 'https://github.com/rana854/cicd-project-1.git'![Uploading ci_cd.jpg…]()
+
             }
         }
         stage('Install Dependencies') {
@@ -78,3 +79,4 @@ pipeline {
     }
 }
 ```
+![ci_cd](https://github.com/rana854/cicd-project-1/assets/132678372/4ab7b14d-875b-4ad7-a93b-e1aaacfbbb03)

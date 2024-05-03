@@ -1,6 +1,9 @@
-# Hospital Management System - Jenkins Automated Build and Test Setup
+#Hospital Management System - CI Pipeline Overview
+##Overview:
+The Hospital Management System repository hosts the source code for a comprehensive solution developed using Python and the Django framework. This system aims to streamline administrative and operational tasks within hospital environments, facilitating efficient management of patient records, appointments, and medical staff.
 
-This repository contains the code for a Hospital Management System developed using Python and the Django framework. The repository is set up to automatically build and test code changes using Jenkins, following the Git Flow branching model.
+Continuous Integration (CI) Pipeline:
+The repository is integrated with a robust CI pipeline, orchestrated through Jenkins, to automate the build, test, and validation processes for code changes. This CI pipeline adheres to industry best practices and follows the Git Flow branching model, ensuring seamless integration and reliable code deployment.
 
 ## Tools Needed
 - Jenkins

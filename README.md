@@ -1,5 +1,5 @@
-#Hospital Management System - CI Pipeline Overview
-##Overview:
+# Hospital Management System - CI Pipeline Overview
+## Overview:
 The Hospital Management System repository hosts the source code for a comprehensive solution developed using Python and the Django framework. This system aims to streamline administrative and operational tasks within hospital environments, facilitating efficient management of patient records, appointments, and medical staff.
 
 Continuous Integration (CI) Pipeline:

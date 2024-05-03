@@ -1,5 +1,3 @@
-Certainly! Here's the revised README with proper formatting:
-
 # Jenkins Pipeline
 
 The Jenkins pipeline for our Python project is designed to automate essential development processes, including building, testing, and validation. By integrating Jenkins, a powerful CI/CD tool, into our workflow, we aim to streamline the deployment of code changes, ensuring efficiency and reliability throughout the development lifecycle.

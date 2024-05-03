@@ -8,7 +8,6 @@ The Jenkins pipeline for our Python project is designed to automate essential de
 - Jenkins
 - Docker
 - Python
-- git
 - GitHub account
 - Git installed on the Jenkins server
 

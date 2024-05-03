@@ -1,9 +1,9 @@
 This project to make Jenkins pipeline for Python project , to automate the build, test, and validation processes for code changes. 
 ## Pipeline Objectives:
-Automated Build: Compile the Python project to generate executable artifacts.
-Test Automation: Execute automated tests to validate code functionality and integrity.
-Validation Processes: Ensure adherence to coding standards, code quality, and regulatory requirements.
-Continuous Integration: Integrate code changes swiftly and consistently, promoting collaboration and agility within the development team.
+- Automated Build: Compile the Python project to generate executable artifacts.
+- Test Automation: Execute automated tests to validate code functionality and integrity.
+- Validation Processes: Ensure adherence to coding standards, code quality, and regulatory requirements.
+- Continuous Integration: Integrate code changes swiftly and consistently, promoting collaboration and agility within the development team.
 ## Tools Needed
 - Jenkins
 - Docker

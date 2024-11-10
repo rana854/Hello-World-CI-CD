@@ -4,7 +4,7 @@ pipeline {
     environment {
         DOCKER_USERNAME = 'ranatarek'
         DOCKER_PASSWORD = 'Rana3940498'
-        IMAGE_NAME = 'pipline_docker_image14'
+        IMAGE_NAME = 'pipline_docker_image15'
         K8S_DEPLOYMENT_NAME = 'myapp-deployment'
         K8S_SERVICE_NAME = 'myapp-service'
     }
@@ -65,8 +65,11 @@ pipeline {
                     // Deploy application to Minikube
                     //bat "kubectl apply -f Django project\myproject\deployment.yaml"
                     //bat "kubectl apply -f Django project\myproject\service.yaml"
-                        bat "kubectl apply -f Django project/myproject/deployment.yaml"
-                        bat "kubectl apply -f Django project/myproject/service.yaml"
+                   //     bat "kubectl apply -f Django project/myproject/deployment.yaml"
+                     //   bat "kubectl apply -f Django project/myproject/service.yaml"
+                    bat 'kubectl apply -f "Django project/myproject/deployment.yaml"'
+                    bat 'kubectl apply -f "Django project/myproject/service.yaml"'
+
                     // Optionally, expose the service
                     bat "kubectl expose deployment ${K8S_DEPLOYMENT_NAME} --type=ClusterIP --name=${K8S_SERVICE_NAME}"
                 }

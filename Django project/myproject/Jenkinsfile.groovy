@@ -46,7 +46,4 @@ pipeline {
         }
     }
 
-    post {
-        always {
-            // Logout from Docker Hub and clean up local Docker images
-            bat "docker logo
+    

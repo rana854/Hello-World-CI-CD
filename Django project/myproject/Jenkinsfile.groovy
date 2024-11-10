@@ -5,7 +5,8 @@ pipeline {
         // Docker Hub username and password (insecure, avoid in production)
         DOCKER_USERNAME = 'ranatarek'
         DOCKER_PASSWORD = 'Rana3940498'
-        IMAGE_NAME = 'pipline_docker_image23'
+        IMAGE_NAME = 'pipline_docker_image24'
+        KUBECONFIG = "${env.USERPROFILE}\\.kube\\config"
     }
 
     stages {
@@ -68,9 +69,12 @@ stage('Setup and Deploy to Minikube') {
            //         bat "kubectl config use-context minikube"
 
                     // Deploy application to Minikube
-                   
-                    bat 'kubectl apply -f "Django project/myproject/deployment.yaml"'
-                    bat 'kubectl apply -f "Django project/myproject/service.yaml"'
+                     // Run kubectl command with KUBECONFIG environment variable
+                    withEnv(["KUBECONFIG=${env.USERPROFILE}\\.kube\\config"]) {
+                        bat 'kubectl apply -f "Django project\\myproject\\deployment.yaml"'
+                    }
+                 //   bat 'kubectl apply -f "Django project/myproject/deployment.yaml"'
+                   // bat 'kubectl apply -f "Django project/myproject/service.yaml"'
 
                 }
             }

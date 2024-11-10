@@ -54,6 +54,7 @@ pipeline {
 
                     // Start Minikube with Docker driver
                     bat "minikube start --driver=docker"
+                    bat "docker run hello-world"
 
                     // Wait for Minikube to be fully started (adjust delay as needed)
                     bat "timeout /t 20"

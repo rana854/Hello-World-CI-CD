@@ -42,16 +42,22 @@ pipeline {
             }
         }
 
-        stage('Deploy to Minikube') {
+        stage('Setup and Deploy to Minikube') {
             steps {
                 script {
                     // Ensure Docker is running before starting Minikube
                     bat "docker info"
-                    
-                    // Start Minikube using Docker driver
+
+                    // Set Minikube to use Docker as the driver
+                    bat "minikube config set driver docker"
+
+                    // Start Minikube with Docker driver
                     bat "minikube start --driver=docker"
 
-                    // Set Kubeconfig to Minikube
+                    // Wait for Minikube to be fully started (adjust delay as needed)
+                    bat "timeout /t 20"
+
+                    // Set Kubeconfig to use Minikube
                     bat "kubectl config use-context minikube"
 
                     // Deploy application to Minikube
@@ -65,5 +71,3 @@ pipeline {
         }
     }
 }
-
-

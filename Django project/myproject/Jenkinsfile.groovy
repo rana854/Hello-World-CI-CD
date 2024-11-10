@@ -1,26 +1,52 @@
 pipeline {
     agent any
-    
+
+    environment {
+        // Docker Hub username and password (insecure, avoid in production)
+        DOCKER_USERNAME = 'ranatarek'
+        DOCKER_PASSWORD = 'Rana3940498'
+        IMAGE_NAME = 'pipline_docker_image'
+    }
+
     stages {
-        stage('Checkout') {
+        stage('Clone Repository') {
             steps {
-                git branch: 'main', url: 'https://github.com/rana854/cicd-project-1.git'
+                // Clone your repository
+                git branch: 'main', url: ''https://github.com/rana854/cicd-project-1.git'
             }
         }
-        stage('Install Dependencies') {
+
+        stage('Build Docker Image') {
             steps {
-                bat 'pip install -r "Django project/myproject/requirements.txt"'
+                script {
+                    // Build the Docker image with a specific tag
+                    def imageTag = "${DOCKER_USERNAME}/${IMAGE_NAME}:latest"
+                    bat "docker build -t ${imageTag} ."
+                }
             }
         }
-        stage('Run Tests') {
+
+        stage('Login to Docker Hub') {
             steps {
-                bat 'python "Django project/myproject/manage.py" test'
+                script {
+                    // Login to Docker Hub using the environment variables (insecure)
+                    bat "echo ${DOCKER_PASSWORD} | docker login -u ${DOCKER_USERNAME} --password-stdin"
+                }
             }
         }
-        stage('Deploy') {
+
+        stage('Pubat Docker Image to Docker Hub') {
             steps {
-                echo 'Deploying the application'
+                script {
+                    def imageTag = "${DOCKER_USERNAME}/${IMAGE_NAME}:latest"
+                    // Pubat the Docker image to Docker Hub
+                    bat "docker pubat ${imageTag}"
+                }
             }
         }
     }
-}
+
+    post {
+        always {
+            // Logout from Docker Hub and clean up local Docker images
+            bat "docker logo

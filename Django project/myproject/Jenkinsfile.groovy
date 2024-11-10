@@ -55,13 +55,13 @@ pipeline {
      steps {
          script {
              // Start Docker Desktop
-             bat 'start "" /b "C:\\Program Files\\Docker\\Docker\\Docker Desktop.exe"'
+          //   bat 'start "" /b "C:\\Program Files\\Docker\\Docker\\Docker Desktop.exe"'
 
              // Wait for Docker to fully initialize (add a small delay)
-             sleep(20)
+            // sleep(20)
 
              // Start Minikube
-             bat "minikube start"
+             //bat "minikube start"
 
              // Set Kubeconfig to point to Minikube
              bat "kubectl config use-context minikube"

@@ -4,7 +4,7 @@ pipeline {
     environment {
         DOCKER_USERNAME = 'ranatarek'
         DOCKER_PASSWORD = 'Rana3940498'
-        IMAGE_NAME = 'pipline_docker_image10'
+        IMAGE_NAME = 'pipline_docker_image11'
         K8S_DEPLOYMENT_NAME = 'myapp-deployment'
         K8S_SERVICE_NAME = 'myapp-service'
     }
@@ -49,15 +49,15 @@ pipeline {
                     bat "docker info"
 
                     // Set Minikube to use Docker as the driver
-                    bat "minikube config set driver docker"
-                    bat "docker run hello-world"
+                //    bat "minikube config set driver docker"
+                  //  bat "docker run hello-world"
 
                     // Start Minikube with Docker driver
-                    bat "minikube start --driver=docker"
-                    bat "docker run hello-world"
+                //    bat "minikube start --driver=docker"
+                  //  bat "docker run hello-world"
 
                     // Wait for Minikube to be fully started (adjust delay as needed)
-                    bat "timeout /t 20"
+                 //   bat "timeout /t 20"
 
                     // Set Kubeconfig to use Minikube
                     bat "kubectl config use-context minikube"

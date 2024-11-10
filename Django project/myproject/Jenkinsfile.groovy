@@ -5,7 +5,7 @@ pipeline {
         // Docker Hub username and password (insecure, avoid in production)
         DOCKER_USERNAME = 'ranatarek'
         DOCKER_PASSWORD = 'Rana3940498'
-        IMAGE_NAME = 'pipline_docker_image7'
+        IMAGE_NAME = 'pipline_docker_image8'
       //  MINIKUBE_PROFILE = 'minikube' // Set the name of your Minikube profile if you have one
         K8S_DEPLOYMENT_NAME = 'myapp-deployment'  // Change to your Kubernetes deployment name
         K8S_SERVICE_NAME = 'myapp-service'        // Change to your Kubernetes service name
@@ -51,28 +51,31 @@ pipeline {
             }
         }
 
-         stage('Deploy to Minikube') {
-            steps {
-                script {
-                    // Set the Minikube environment
-                    bat 'start "" /b "C:\\Program Files\\Docker\\Docker\\Docker Desktop.exe"'
+        stage('Deploy to Minikube') {
+     steps {
+         script {
+             // Start Docker Desktop
+             bat 'start "" /b "C:\\Program Files\\Docker\\Docker\\Docker Desktop.exe"'
 
-                    bat "minikube start " // Ensure Minikube is started
+             // Wait for Docker to fully initialize (add a small delay)
+             sleep(20)
 
-                    // Set Kubeconfig to point to Minikube
-                    bat "kubectl config use-context minikube"
+             // Start Minikube
+             bat "minikube start"
 
-                    // Deploy the application to Minikube Kubernetes cluster
-                    // Define Kubernetes deployment and service YAML files
-                    bat "kubectl apply -f "Django project/myproject/deployment.yaml" " // Path to your deployment.yaml file
-                    bat "kubectl apply -f "Django project/myproject/service.yaml""     // Path to your service.yaml file
-                    
-                    // Optionally, expose the service (you can skip this if you already exposed the service)
-                    bat "kubectl expose deployment ${K8S_DEPLOYMENT_NAME} --type=ClusterIP --name=${K8S_SERVICE_NAME}"
+             // Set Kubeconfig to point to Minikube
+             bat "kubectl config use-context minikube"
 
-                }
-            }
-        }
+             // Deploy the application to Minikube Kubernetes cluster
+             bat "kubectl apply -f \"Django project/myproject/deployment.yaml\""
+             bat "kubectl apply -f \"Django project/myproject/service.yaml\""
+
+             // Optionally, expose the service
+             bat "kubectl expose deployment ${K8S_DEPLOYMENT_NAME} --type=ClusterIP --name=${K8S_SERVICE_NAME}"
+         }
+     }
+ }
+
     }
 
     

@@ -21,7 +21,8 @@ pipeline {
                 script {
                     // Build the Docker image with a specific tag
                     def imageTag = "${DOCKER_USERNAME}/${IMAGE_NAME}:latest"
-                    bat "docker build -t ${imageTag} ."
+                    bat "docker build -t ${imageTag} -f Django\\ project\\myproject\\Dockerfile ."
+                    
                 }
             }
         }

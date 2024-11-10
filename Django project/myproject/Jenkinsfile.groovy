@@ -63,8 +63,8 @@ pipeline {
                     bat "kubectl config use-context minikube"
 
                     // Deploy application to Minikube
-                    bat "kubectl apply -f \"Django project/myproject/deployment.yaml""
-                    bat "kubectl apply -f \"Django project/myproject/service.yaml""
+                    bat "kubectl apply -f "Django project/myproject/deployment.yaml" "
+                    bat "kubectl apply -f "Django project/myproject/service.yaml" "
 
                     // Optionally, expose the service
                     bat "kubectl expose deployment ${K8S_DEPLOYMENT_NAME} --type=ClusterIP --name=${K8S_SERVICE_NAME}"

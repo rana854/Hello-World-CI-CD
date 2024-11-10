@@ -55,7 +55,7 @@ pipeline {
             steps {
                 script {
                     // Set the Minikube environment
-                    bat "minikube start --driver=docker --profile ${MINIKUBE_PROFILE}" // Ensure Minikube is started
+                    bat "minikube start  --profile ${MINIKUBE_PROFILE}" // Ensure Minikube is started
 
                     // Set Kubeconfig to point to Minikube
                     bat "kubectl config use-context minikube"

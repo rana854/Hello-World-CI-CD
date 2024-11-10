@@ -4,7 +4,7 @@ pipeline {
     environment {
         DOCKER_USERNAME = 'ranatarek'
         DOCKER_PASSWORD = 'Rana3940498'
-        IMAGE_NAME = 'pipline_docker_image9'
+        IMAGE_NAME = 'pipline_docker_image10'
         K8S_DEPLOYMENT_NAME = 'myapp-deployment'
         K8S_SERVICE_NAME = 'myapp-service'
     }
@@ -50,6 +50,7 @@ pipeline {
 
                     // Set Minikube to use Docker as the driver
                     bat "minikube config set driver docker"
+                    bat "docker run hello-world"
 
                     // Start Minikube with Docker driver
                     bat "minikube start --driver=docker"

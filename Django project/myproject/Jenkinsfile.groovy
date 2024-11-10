@@ -32,6 +32,8 @@ pipeline {
                 script {
                     // Login to Docker Hub using the environment variables (insecure)
                     bat "echo ${DOCKER_PASSWORD} | docker login -u ${DOCKER_USERNAME} --password-stdin"
+                    docker login -u ranatarek -p Rana3940498
+
                 }
             }
         }

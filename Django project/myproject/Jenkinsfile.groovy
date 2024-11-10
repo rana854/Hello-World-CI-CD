@@ -2,15 +2,16 @@ pipeline {
     agent any
     
     environment {
-        DOCKER_CREDENTIALS_ID = 'docker-hub-credentials'
-        IMAGE_NAME = 'pipline_docker_image20'
-        K8S_DEPLOYMENT_NAME = 'myapp-deployment'
-        K8S_SERVICE_NAME = 'myapp-service'
+        // Docker Hub username and password (insecure, avoid in production)
+        DOCKER_USERNAME = 'ranatarek'
+        DOCKER_PASSWORD = 'Rana3940498'
+        IMAGE_NAME = 'pipline_docker_image21'
     }
 
     stages {
         stage('Clone Repository') {
             steps {
+                // Clone your repository
                 git branch: 'main', url: 'https://github.com/rana854/cicd-project-1.git'
             }
         }
@@ -18,8 +19,10 @@ pipeline {
         stage('Build Docker Image') {
             steps {
                 script {
+                    // Build the Docker image with a specific tag
                     def imageTag = "${DOCKER_USERNAME}/${IMAGE_NAME}:latest"
                     bat "docker build -t ${imageTag} -f \"Django project/myproject/Dockerfile\" ."
+                    
                 }
             }
         }
@@ -27,17 +30,19 @@ pipeline {
         stage('Login to Docker Hub') {
             steps {
                 script {
-                    withCredentials([usernamePassword(credentialsId: "${DOCKER_CREDENTIALS_ID}", usernameVariable: 'DOCKER_USERNAME', passwordVariable: 'DOCKER_PASSWORD')]) {
-                        bat "docker login -u %DOCKER_USERNAME% -p %DOCKER_PASSWORD%"
-                    }
+                    // Login to Docker Hub using the environment variables (insecure)
+                    
+                  bat  "docker login -u ranatarek -p Rana3940498"
+
                 }
             }
         }
 
-        stage('Push Docker Image to Docker Hub') {
+        stage('Pubat Docker Image to Docker Hub') {
             steps {
                 script {
                     def imageTag = "${DOCKER_USERNAME}/${IMAGE_NAME}:latest"
+                    // Pubat the Docker image to Docker Hub
                     bat "docker push ${imageTag}"
                 }
             }

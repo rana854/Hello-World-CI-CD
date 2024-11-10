@@ -5,7 +5,7 @@ pipeline {
         // Docker Hub username and password (insecure, avoid in production)
         DOCKER_USERNAME = 'ranatarek'
         DOCKER_PASSWORD = 'Rana3940498'
-        IMAGE_NAME = 'pipline_docker_image22'
+        IMAGE_NAME = 'pipline_docker_image23'
     }
 
     stages {
@@ -65,7 +65,7 @@ stage('Setup and Deploy to Minikube') {
               //     bat "timeout /t 20"
 
                  // Set Kubeconfig to use Minikube
-                    bat "kubectl config use-context minikube"
+           //         bat "kubectl config use-context minikube"
 
                     // Deploy application to Minikube
                    

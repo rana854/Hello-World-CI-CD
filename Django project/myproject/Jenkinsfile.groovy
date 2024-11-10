@@ -4,7 +4,7 @@ pipeline {
     environment {
         DOCKER_USERNAME = 'ranatarek'
         DOCKER_PASSWORD = 'Rana3940498'
-        IMAGE_NAME = 'pipline_docker_image16'
+        IMAGE_NAME = 'pipline_docker_image17'
         K8S_DEPLOYMENT_NAME = 'myapp-deployment'
         K8S_SERVICE_NAME = 'myapp-service'
     }
@@ -42,37 +42,67 @@ pipeline {
             }
         }
 
-        stage('Setup and Deploy to Minikube') {
+        stage('Setup Minikube') {
             steps {
                 script {
-                    // Ensure Docker is running before starting Minikube
-                    bat "docker info"
+                    // Verify Docker service is running
+                    bat "docker info || exit 1"
 
-                    // Set Minikube to use Docker as the driver
-                //    bat "minikube config set driver docker"
-                  //  bat "docker run hello-world"
+                    // Start Minikube with Docker driver if not running
+                    bat """
+                        minikube status || (
+                            echo "Starting Minikube..."
+                            minikube start --driver=docker
+                        )
+                    """
+                }
+            }
+        }
 
-                    // Start Minikube with Docker driver
-                //    bat "minikube start --driver=docker"
-                  //  bat "docker run hello-world"
+        stage('Verify Minikube') {
+            steps {
+                script {
+                    // Check Minikube status to ensure all components are running
+                    bat """
+                        minikube status || (
+                            echo "Minikube did not start properly. Attempting restart..."
+                            minikube stop
+                            minikube start --driver=docker
+                        )
+                    """
 
-                    // Wait for Minikube to be fully started (adjust delay as needed)
-                 //   bat "timeout /t 20"
-
-                    // Set Kubeconfig to use Minikube
+                    // Set kubectl to use Minikube context and confirm node readiness
                     bat "kubectl config use-context minikube"
+                    bat "kubectl get nodes || (echo 'Minikube nodes are not ready.' && exit 1)"
+                }
+            }
+        }
 
-                    // Deploy application to Minikube
-                    //bat "kubectl apply -f Django project\myproject\deployment.yaml"
-                    //bat "kubectl apply -f Django project\myproject\service.yaml"
-                   //     bat "kubectl apply -f Django project/myproject/deployment.yaml"
-                     //   bat "kubectl apply -f Django project/myproject/service.yaml"
-                    bat 'kubectl apply -f "Django project/myproject/deployment.yaml" --validate=false'
-                    bat 'kubectl apply -f "Django project/myproject/service.yaml" --validate=false'
+        stage('Deploy to Minikube') {
+            steps {
+                script {
+                    // Deploy the application
+                    bat "kubectl apply -f \"Django project/myproject/deployment.yaml\" --validate=false"
+                    bat "kubectl apply -f \"Django project/myproject/service.yaml\" --validate=false"
 
                     // Optionally, expose the service
                     bat "kubectl expose deployment ${K8S_DEPLOYMENT_NAME} --type=ClusterIP --name=${K8S_SERVICE_NAME}"
                 }
+            }
+        }
+    }
+
+    post {
+        always {
+            // Output Minikube logs for debugging if necessary
+            script {
+                bat "minikube logs"
+            }
+        }
+        cleanup {
+            // Stop Minikube to release resources
+            script {
+                bat "minikube stop"
             }
         }
     }

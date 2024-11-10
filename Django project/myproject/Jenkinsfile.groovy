@@ -2,19 +2,16 @@ pipeline {
     agent any
 
     environment {
-        // Docker Hub username and password (insecure, avoid in production)
         DOCKER_USERNAME = 'ranatarek'
         DOCKER_PASSWORD = 'Rana3940498'
-        IMAGE_NAME = 'pipline_docker_image8'
-      //  MINIKUBE_PROFILE = 'minikube' // Set the name of your Minikube profile if you have one
-        K8S_DEPLOYMENT_NAME = 'myapp-deployment'  // Change to your Kubernetes deployment name
-        K8S_SERVICE_NAME = 'myapp-service'        // Change to your Kubernetes service name
+        IMAGE_NAME = 'pipline_docker_image9'
+        K8S_DEPLOYMENT_NAME = 'myapp-deployment'
+        K8S_SERVICE_NAME = 'myapp-service'
     }
 
     stages {
         stage('Clone Repository') {
             steps {
-                // Clone your repository
                 git branch: 'main', url: 'https://github.com/rana854/cicd-project-1.git'
             }
         }
@@ -22,10 +19,8 @@ pipeline {
         stage('Build Docker Image') {
             steps {
                 script {
-                    // Build the Docker image with a specific tag
                     def imageTag = "${DOCKER_USERNAME}/${IMAGE_NAME}:latest"
                     bat "docker build -t ${imageTag} -f \"Django project/myproject/Dockerfile\" ."
-                    
                 }
             }
         }
@@ -33,52 +28,42 @@ pipeline {
         stage('Login to Docker Hub') {
             steps {
                 script {
-                    // Login to Docker Hub using the environment variables (insecure)
-                    
-                  bat  "docker login -u ranatarek -p Rana3940498"
-
+                    bat "docker login -u ${DOCKER_USERNAME} -p ${DOCKER_PASSWORD}"
                 }
             }
         }
 
-        stage('Pubat Docker Image to Docker Hub') {
+        stage('Push Docker Image to Docker Hub') {
             steps {
                 script {
                     def imageTag = "${DOCKER_USERNAME}/${IMAGE_NAME}:latest"
-                    // Pubat the Docker image to Docker Hub
                     bat "docker push ${imageTag}"
                 }
             }
         }
 
         stage('Deploy to Minikube') {
-     steps {
-         script {
-             // Start Docker Desktop
-          //   bat 'start "" /b "C:\\Program Files\\Docker\\Docker\\Docker Desktop.exe"'
+            steps {
+                script {
+                    // Ensure Docker is running before starting Minikube
+                    bat "docker info"
+                    
+                    // Start Minikube using Docker driver
+                    bat "minikube start --driver=docker"
 
-             // Wait for Docker to fully initialize (add a small delay)
-            // sleep(20)
+                    // Set Kubeconfig to Minikube
+                    bat "kubectl config use-context minikube"
 
-             // Start Minikube
-             //bat "minikube start"
+                    // Deploy application to Minikube
+                    bat "kubectl apply -f \"Django project/myproject/deployment.yaml\""
+                    bat "kubectl apply -f \"Django project/myproject/service.yaml\""
 
-             // Set Kubeconfig to point to Minikube
-             bat "minikube status"
-
-             bat "kubectl config use-context minikube"
-             
-             // Deploy the application to Minikube Kubernetes cluster
-             bat "kubectl apply -f \"Django project/myproject/deployment.yaml\""
-             bat "kubectl apply -f \"Django project/myproject/service.yaml\""
-
-             // Optionally, expose the service
-             bat "kubectl expose deployment ${K8S_DEPLOYMENT_NAME} --type=ClusterIP --name=${K8S_SERVICE_NAME}"
-         }
-     }
- }
-
+                    // Optionally, expose the service
+                    bat "kubectl expose deployment ${K8S_DEPLOYMENT_NAME} --type=ClusterIP --name=${K8S_SERVICE_NAME}"
+                }
+            }
+        }
     }
-
-    
 }
+
+

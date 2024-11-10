@@ -5,7 +5,7 @@ pipeline {
         // Docker Hub username and password (insecure, avoid in production)
         DOCKER_USERNAME = 'ranatarek'
         DOCKER_PASSWORD = 'Rana3940498'
-        IMAGE_NAME = 'pipline_docker_image3'
+        IMAGE_NAME = 'pipline_docker_image4'
         MINIKUBE_PROFILE = 'minikube' // Set the name of your Minikube profile if you have one
         K8S_DEPLOYMENT_NAME = 'myapp-deployment'  // Change to your Kubernetes deployment name
         K8S_SERVICE_NAME = 'myapp-service'        // Change to your Kubernetes service name
@@ -55,8 +55,8 @@ pipeline {
             steps {
                 script {
                     // Set the Minikube environment
-                   // bat "minikube start --driver=docker --profile ${MINIKUBE_PROFILE}" // Ensure Minikube is started
-                   bat "minikube start --driver=hyperv --profile minikube"
+                    bat "minikube start --driver=docker --profile ${MINIKUBE_PROFILE}" // Ensure Minikube is started
+
                     // Set Kubeconfig to point to Minikube
                     bat "kubectl config use-context minikube"
 

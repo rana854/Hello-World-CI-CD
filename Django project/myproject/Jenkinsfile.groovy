@@ -63,7 +63,7 @@ pipeline {
                     // Deploy the application to Minikube Kubernetes cluster
                     // Define Kubernetes deployment and service YAML files
                     bat "kubectl apply -f "Django project/myproject/deployment.yaml" " // Path to your deployment.yaml file
-                    bat "kubectl apply -f k8s/service.yaml"     // Path to your service.yaml file
+                    bat "kubectl apply -f "Django project/myproject/service.yaml""     // Path to your service.yaml file
                     
                     // Optionally, expose the service (you can skip this if you already exposed the service)
                     bat "kubectl expose deployment ${K8S_DEPLOYMENT_NAME} --type=ClusterIP --name=${K8S_SERVICE_NAME}"

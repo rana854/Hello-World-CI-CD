@@ -64,8 +64,10 @@ pipeline {
              //bat "minikube start"
 
              // Set Kubeconfig to point to Minikube
-             bat "kubectl config use-context minikube"
+             bat "minikube status"
 
+             bat "kubectl config use-context minikube"
+             
              // Deploy the application to Minikube Kubernetes cluster
              bat "kubectl apply -f \"Django project/myproject/deployment.yaml\""
              bat "kubectl apply -f \"Django project/myproject/service.yaml\""

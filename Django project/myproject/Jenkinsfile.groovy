@@ -5,7 +5,7 @@ pipeline {
         // Docker Hub username and password (insecure, avoid in production)
         DOCKER_USERNAME = 'ranatarek'
         DOCKER_PASSWORD = 'Rana3940498'
-        IMAGE_NAME = 'pipline_docker_image21'
+        IMAGE_NAME = 'pipline_docker_image22'
     }
 
     stages {
@@ -54,15 +54,15 @@ stage('Setup and Deploy to Minikube') {
                     bat "docker info"
 
                     // Set Minikube to use Docker as the driver
-                    bat "minikube config set driver docker"
+                  //  bat "minikube config set driver docker"
                   
 
                     // Start Minikube with Docker driver
-                   bat "minikube start --driver=docker"
+                //   bat "minikube start --driver=docker"
                  
 
                     // Wait for Minikube to be fully started (adjust delay as needed)
-                   bat "timeout /t 20"
+              //     bat "timeout /t 20"
 
                  // Set Kubeconfig to use Minikube
                     bat "kubectl config use-context minikube"

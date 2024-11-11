@@ -1,10 +1,12 @@
 pipeline {
     agent any
-    
+    tools {
+        Python "Python"
+    }
     environment {
         DOCKER_USERNAME = 'ranatarek'
         DOCKER_PASSWORD = 'Rana3940498'
-        IMAGE_NAME = 'pipline_docker_image28'
+        IMAGE_NAME = 'pipline_docker_image30'
         KUBERNETES_DEPLOYMENT_FILE = 'Django project/myproject/deployment.yaml'
     }
 

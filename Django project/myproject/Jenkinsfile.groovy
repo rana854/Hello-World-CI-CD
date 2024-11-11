@@ -1,7 +1,7 @@
 pipeline {
     agent any
     tools {
-        Python "Python"
+        Python 'Python'
     }
     environment {
         DOCKER_USERNAME = 'ranatarek'

@@ -1,19 +1,19 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: myapp-deployment3
+  name: myapp-deployment5
 spec:
   replicas: 2
   selector:
     matchLabels:
-      app: myapp3
+      app: myapp5
   template:
     metadata:
       labels:
-        app: myapp3
+        app: myapp5
     spec:
       containers:
-      - name: myapp-container3
+      - name: myapp-container5
         image: "ranatarek/my1image:latest"
         ports:
         - containerPort: 8000

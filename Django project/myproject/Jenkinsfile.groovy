@@ -5,7 +5,7 @@ pipeline {
         // Docker Hub username and password (insecure, avoid in production)
         DOCKER_USERNAME = 'ranatarek'
         DOCKER_PASSWORD = 'Rana3940498'
-        IMAGE_NAME = 'pipline_docker_image26'
+        IMAGE_NAME = 'pipline_docker_image27'
        // KUBECONFIG = "${env.USERPROFILE}\\.kube\\config"
         KUBERNETES_DEPLOYMENT_FILE = 'Django project/myproject/deployment.yaml'
     }
@@ -18,7 +18,7 @@ pipeline {
             }
         }
 
-      /*  stage('Build Docker Image') {
+        stage('Build Docker Image') {
             steps {
                 script {
                     // Build the Docker image with a specific tag
@@ -28,8 +28,8 @@ pipeline {
                 }
             }
         }
-*/
- /*       stage('Login to Docker Hub') {
+
+        stage('Login to Docker Hub') {
             steps {
                 script {
                     // Login to Docker Hub using the environment variables (insecure)
@@ -38,9 +38,9 @@ pipeline {
 
                 }
             }
-        }*/
+        }
 
-  /*      stage('Pubat Docker Image to Docker Hub') {
+        stage('Pubat Docker Image to Docker Hub') {
             steps {
                 script {
                     def imageTag = "${DOCKER_USERNAME}/${IMAGE_NAME}:latest"
@@ -48,44 +48,16 @@ pipeline {
                     bat "docker push ${imageTag}"
                 }
             }
-        }*/
-stage('Setup and Deploy to Minikube') {
+        }
+        stage('Deploy to Minikube') {
             steps {
                 script {
-                    // Ensure Docker is running before starting Minikube
-                  //  bat "docker info"
-
-                    // Set Minikube to use Docker as the driver
-                  //  bat "minikube config set driver docker"
-                  
-
-                    // Start Minikube with Docker driver
-                //   bat "minikube start --driver=docker"
-                 
-
-                    // Wait for Minikube to be fully started (adjust delay as needed)
-              //     bat "timeout /t 20"
-
-                 // Set Kubeconfig to use Minikube
-           //         bat "kubectl config use-context minikube"
-
-                    // Deploy application to Minikube
-                     // Run kubectl command with KUBECONFIG environment variable
-                  //  withEnv(["KUBECONFIG=${env.USERPROFILE}\\.kube\\config"]) {
-                    //    bat 'kubectl apply -f "Django project\\myproject\\deployment.yaml"'
-                 //   }
-                 //   bat 'kubectl apply -f "Django project/myproject/deployment.yaml"'
-                   // bat 'kubectl apply -f "Django project/myproject/service.yaml"'
-        //        bat "minikube status"
-        //    withCredentials([file(credentialsId: 'kubeconfig_credentials', variable: 'KUBECONFIG')]) {
-          //   bat "kubectl --kubeconfig=\$KUBECONFIG apply -f \"Django project/myproject/deployment.yaml\""   
-            //}
-//bat "kubectl --kubeconfig=\"C:\\Users\\AL-fares\\.kube\\config\" apply -f \"Django project/myproject/deployment.yaml\""
+                    bat "kubectl --kubeconfig=\"C:\\Users\\AL-fares\\.kube\\config\" apply -f \"Django project/myproject/deployment.yaml\""
                     bat "kubectl --kubeconfig=\"C:\\Users\\AL-fares\\.kube\\config\" apply -f \"Django project/myproject/service.yaml\""
                 }
             }
     }
-        // Add remaining stages as needed
+       
     }
 }
 

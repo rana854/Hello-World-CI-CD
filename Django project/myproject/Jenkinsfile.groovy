@@ -13,7 +13,6 @@ pipeline {
     stages {
         stage('Clone Repository') {
             steps {
-                // Clone your repository
                 git branch: 'main', url: 'https://github.com/rana854/cicd-project-1.git'
             }
         }
@@ -21,7 +20,6 @@ pipeline {
         stage('Build Docker Image') {
             steps {
                 script {
-                    // Build the Docker image with a specific tag
                     def imageTag = "${DOCKER_USERNAME}/${IMAGE_NAME}:latest"
                     bat "docker build -t ${imageTag} -f \"Django project/myproject/Dockerfile\" ."
                     
@@ -32,19 +30,16 @@ pipeline {
         stage('Login to Docker Hub') {
             steps {
                 script {
-                    // Login to Docker Hub using the environment variables (insecure)
-                    
                   bat  "docker login -u ranatarek -p Rana3940498"
 
                 }
             }
         }
 
-        stage('Pubat Docker Image to Docker Hub') {
+        stage('Push Docker Image to Docker Hub') {
             steps {
                 script {
                     def imageTag = "${DOCKER_USERNAME}/${IMAGE_NAME}:latest"
-                    // Pubat the Docker image to Docker Hub
                     bat "docker push ${imageTag}"
                 }
             }

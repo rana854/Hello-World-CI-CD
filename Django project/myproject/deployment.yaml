@@ -1,19 +1,19 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: myapp-deployment1
+  name: myapp-deployment2
 spec:
   replicas: 2
   selector:
     matchLabels:
-      app: myapp1
+      app: myapp2
   template:
     metadata:
       labels:
-        app: myapp1
+        app: myapp2
     spec:
       containers:
-      - name: myapp-container1
-        image: "${DOCKER_USERNAME}/${IMAGE_NAME}:latest"
+      - name: myapp-container2
+        image: "ranatarek/pipline_docker_image28:latest"
         ports:
         - containerPort: 8000

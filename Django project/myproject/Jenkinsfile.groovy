@@ -73,7 +73,7 @@ stage('Setup and Deploy to Minikube') {
                      // Run kubectl command with KUBECONFIG environment variable
                   //  withEnv(["KUBECONFIG=${env.USERPROFILE}\\.kube\\config"]) {
                     //    bat 'kubectl apply -f "Django project\\myproject\\deployment.yaml"'
-                    }
+                 //   }
                  //   bat 'kubectl apply -f "Django project/myproject/deployment.yaml"'
                    // bat 'kubectl apply -f "Django project/myproject/service.yaml"'
         //        bat "minikube status"

@@ -82,7 +82,7 @@ stage('Setup and Deploy to Minikube') {
             }
                 }
             }
-        
+    }
         // Add remaining stages as needed
     }
 }

@@ -77,10 +77,10 @@ stage('Setup and Deploy to Minikube') {
                  //   bat 'kubectl apply -f "Django project/myproject/deployment.yaml"'
                    // bat 'kubectl apply -f "Django project/myproject/service.yaml"'
         //        bat "minikube status"
-            withCredentials([file(credentialsId: 'kubeconfig_credentials', variable: 'KUBECONFIG')]) {
-             bat "kubectl --kubeconfig=\$KUBECONFIG apply -f \"Django project/myproject/deployment.yaml\""   
-            }
-
+        //    withCredentials([file(credentialsId: 'kubeconfig_credentials', variable: 'KUBECONFIG')]) {
+          //   bat "kubectl --kubeconfig=\$KUBECONFIG apply -f \"Django project/myproject/deployment.yaml\""   
+            //}
+bat "kubectl --kubeconfig=\"C:\\Users\\AL-fares\\.kube\\config\" apply -f \"Django project/myproject/deployment.yaml\""
                 }
             }
     }

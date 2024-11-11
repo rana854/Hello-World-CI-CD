@@ -14,6 +14,6 @@ spec:
     spec:
       containers:
       - name: myapp-container
-        image: pipline_docker_image26:latest
+        image: ranatarek/pipline_docker_image26:latest
         ports:
         - containerPort: 8000

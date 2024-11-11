@@ -1,7 +1,7 @@
 pipeline {
     agent any
     tools {
-    python 'python' // Matches the Name you entered in Jenkins configuration
+    python 'python3' // Matches the Name you entered in Jenkins configuration
 }
 
     environment {

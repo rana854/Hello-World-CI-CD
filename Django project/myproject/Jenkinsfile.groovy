@@ -3,7 +3,7 @@ pipeline {
     environment {
         DOCKER_USERNAME = 'ranatarek'
         DOCKER_PASSWORD = 'Rana3940498'
-        IMAGE_NAME = 'pipline_docker_image30'
+        IMAGE_NAME = 'pipline_docker_image33'
         KUBERNETES_DEPLOYMENT_FILE = 'Django project/myproject/deployment.yaml'
     }
 

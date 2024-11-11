@@ -7,7 +7,7 @@ pipeline {
         DOCKER_PASSWORD = 'Rana3940498'
         IMAGE_NAME = 'pipline_docker_image25'
        // KUBECONFIG = "${env.USERPROFILE}\\.kube\\config"
-        KUBERNETES_DEPLOYMENT_FILE = 'Django project\myproject\deployment.yaml'
+        KUBERNETES_DEPLOYMENT_FILE = 'Django project/myproject/deployment.yaml'
     }
 
     stages {

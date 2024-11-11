@@ -18,7 +18,7 @@ pipeline {
             }
         }
 
-        stage('Build Docker Image') {
+      /*  stage('Build Docker Image') {
             steps {
                 script {
                     // Build the Docker image with a specific tag
@@ -28,8 +28,8 @@ pipeline {
                 }
             }
         }
-
-        stage('Login to Docker Hub') {
+*/
+ /*       stage('Login to Docker Hub') {
             steps {
                 script {
                     // Login to Docker Hub using the environment variables (insecure)
@@ -38,9 +38,9 @@ pipeline {
 
                 }
             }
-        }
+        }*/
 
-        stage('Pubat Docker Image to Docker Hub') {
+  /*      stage('Pubat Docker Image to Docker Hub') {
             steps {
                 script {
                     def imageTag = "${DOCKER_USERNAME}/${IMAGE_NAME}:latest"
@@ -48,12 +48,12 @@ pipeline {
                     bat "docker push ${imageTag}"
                 }
             }
-        }
+        }*/
 stage('Setup and Deploy to Minikube') {
             steps {
                 script {
                     // Ensure Docker is running before starting Minikube
-                    bat "docker info"
+                  //  bat "docker info"
 
                     // Set Minikube to use Docker as the driver
                   //  bat "minikube config set driver docker"
@@ -76,7 +76,7 @@ stage('Setup and Deploy to Minikube') {
                     }
                  //   bat 'kubectl apply -f "Django project/myproject/deployment.yaml"'
                    // bat 'kubectl apply -f "Django project/myproject/service.yaml"'
-                bat "minikube status"
+        //        bat "minikube status"
             withCredentials([file(credentialsId: 'kubeconfig_credentials', variable: 'KUBECONFIG')]) {
                 bat "kubectl --kubeconfig=$KUBECONFIG apply -f ${KUBERNETES_DEPLOYMENT_FILE}"
             }

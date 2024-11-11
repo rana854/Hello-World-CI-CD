@@ -2,11 +2,9 @@ pipeline {
     agent any
     
     environment {
-        // Docker Hub username and password (insecure, avoid in production)
         DOCKER_USERNAME = 'ranatarek'
         DOCKER_PASSWORD = 'Rana3940498'
         IMAGE_NAME = 'pipline_docker_image28'
-       // KUBECONFIG = "${env.USERPROFILE}\\.kube\\config"
         KUBERNETES_DEPLOYMENT_FILE = 'Django project/myproject/deployment.yaml'
     }
 

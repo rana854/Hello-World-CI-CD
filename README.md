@@ -15,7 +15,7 @@ This project demonstrates a simple Jenkins CI/CD pipeline that checks out a Pyth
         stage('Run Application') {
             steps {
                 echo 'Running Hello World Application'
-                bat 'python app.py' // Use 'sh' instead of 'bat' on Linux
+                bat 'python app.py' 
             }
         }
     }

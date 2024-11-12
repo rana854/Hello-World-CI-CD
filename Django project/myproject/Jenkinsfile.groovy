@@ -1,56 +1,26 @@
 pipeline {
     agent any
-    environment {
-        DOCKER_USERNAME = 'ranatarek'
-        DOCKER_PASSWORD = 'Rana3940498'
-        IMAGE_NAME = 'pipline_docker_image33'
-        KUBERNETES_DEPLOYMENT_FILE = 'Django project/myproject/deployment.yaml'
-    }
-
+    
     stages {
-        stage('Clone Repository') {
+        stage('Checkout') {
             steps {
                 git branch: 'main', url: 'https://github.com/rana854/cicd-project-1.git'
             }
         }
-
-        stage('Build Docker Image') {
+        stage('Install Dependencies') {
             steps {
-                script {
-                    def imageTag = "${DOCKER_USERNAME}/${IMAGE_NAME}:latest"
-                    bat "docker build -t ${imageTag} -f \"Django project/myproject/Dockerfile\" ."
-                    
-                }
+                bat 'pip install -r "Django project/myproject/requirements.txt"'
             }
         }
-
-        stage('Login to Docker Hub') {
+        stage('Run Tests') {
             steps {
-                script {
-                  bat  "docker login -u ranatarek -p Rana3940498"
-
-                }
+                bat 'python "Django project/myproject/manage.py" test'
             }
         }
-
-        stage('Push Docker Image to Docker Hub') {
+        stage('Deploy') {
             steps {
-                script {
-                    def imageTag = "${DOCKER_USERNAME}/${IMAGE_NAME}:latest"
-                    bat "docker push ${imageTag}"
-                }
+                echo 'Deploying the application'
             }
         }
-        stage('Deploy to Minikube') {
-            steps {
-                script {
-                    bat "kubectl --kubeconfig=\"C:\\Users\\AL-fares\\.kube\\config\" apply -f \"Django project/myproject/deployment.yaml\""
-                    bat "kubectl --kubeconfig=\"C:\\Users\\AL-fares\\.kube\\config\" apply -f \"Django project/myproject/service.yaml\""
-                }
-            }
-    }
-       
     }
 }
-
-
